@@ -1,0 +1,16 @@
+name: Image Scan
+
+on:
+  workflow_call:
+
+jobs:
+  image-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Trivy Scanner
+        uses: aquasecurity/trivy-action@0.35.0
+        with:
+          image-ref: ${{ secrets.DOCKERHUB_USERNAME }}/my-app:${{ github.sha }}
+          severity: CRITICAL
+          exit-code: 1

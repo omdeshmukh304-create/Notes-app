@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <aside class="sidebar" id="sidebar">
+    <div id="activeView">
+      <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 330.853 330.853"
+        xml:space="preserve">
+        <g>
+          <path
+            d="M277.656,31.186h-32.882v-17.96C244.774,5.921,238.854,0,231.552,0c-7.309,0-13.223,5.927-13.223,13.226v17.96h-17.63
+                      v-17.96C200.699,5.921,194.778,0,187.477,0c-7.314,0-13.223,5.927-13.223,13.226v17.96h-17.643v-17.96
+                      c0-7.305-5.92-13.226-13.226-13.226c-7.305,0-13.219,5.927-13.219,13.226v17.96h-17.642v-17.96C112.524,5.921,106.609,0,99.299,0
+                      c-7.305,0-13.22,5.927-13.22,13.226v17.96H53.182c-7.305,0-13.22,5.93-13.22,13.229V317.63c0,7.302,5.915,13.223,13.22,13.223
+                      h224.486c7.302,0,13.223-5.927,13.223-13.223V44.421C290.891,37.116,284.97,31.186,277.656,31.186z M165.412,271.453H99.293
+                      c-7.305,0-13.22-5.921-13.22-13.223s5.915-13.223,13.22-13.223h66.119c7.305,0,13.226,5.921,13.226,13.223
+                      C178.644,265.532,172.723,271.453,165.412,271.453z M231.552,227.365H99.293c-7.305,0-13.22-5.92-13.22-13.222
+                      s5.915-13.223,13.22-13.223h132.259c7.302,0,13.223,5.921,13.223,13.223S238.865,227.365,231.552,227.365z M231.552,183.291H99.293
+                      c-7.305,0-13.22-5.921-13.22-13.235c0-7.292,5.915-13.216,13.22-13.216h132.259c7.302,0,13.223,5.93,13.223,13.216
+                      C244.774,177.357,238.865,183.291,231.552,183.291z M231.552,139.2H99.293c-7.305,0-13.22-5.93-13.22-13.223
+                      c0-7.305,5.915-13.226,13.22-13.226h132.259c7.302,0,13.223,5.927,13.223,13.226C244.774,133.271,238.865,139.2,231.552,139.2z" />
+        </g>
+      </svg>
+    </div>
+
+  </aside>
+
+  <main class="main-content" id="mainContent">
+    <header>
+      <h1 id="homeTitle">Notes</h1>
+
+      <div class="actions">
+        <label id="searchBtn">
+          <svg fill="#000000" width="18px" height="18px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.027 9.92L16 13.95 14 16l-4.075-3.976A6.465 6.465 0 0 1 6.5 13C2.91 13 0 10.083 0 6.5 0 2.91 2.917 0 6.5 0 10.09 0 13 2.917 13 6.5a6.463 6.463 0 0 1-.973 3.42zM1.997 6.452c0 2.48 2.014 4.5 4.5 4.5 2.48 0 4.5-2.015 4.5-4.5 0-2.48-2.015-4.5-4.5-4.5-2.48 0-4.5 2.014-4.5 4.5z"
+              fill-rule="evenodd" />
+          </svg>
+        </label>
+
+        <button id="themeToggleBtn" class="theme-toggle-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12.79A9 9 0 1111.21 3
+              a7 7 0 009.79 9.79z" fill="currentColor" />
+          </svg>
+
+        </button>
+      </div>
+    </header>
+
+
+    <section class="controls" id="sorting">
+      <div id="searchBar">
+        <input type="text" placeholder="Search Notes" class="search-input" id="searchInput">
+        <button id="closeSearch">X</button>
+      </div>
+      <div class="category-selector">
+        <button class="sorting-tags" data-category="all">All</button>
+        <button class="sorting-tags" data-category="work">Work</button>
+        <button class="sorting-tags" data-category="study">Study</button>
+        <button class="sorting-tags" data-category="personal">Personal</button>
+        <button class="sorting-tags" data-category="idea">Idea</button>
+        <button class="sorting-tags" data-category="other">Other</button>
+      </div>
+    </section>
+
+    <section class="feedback-ui">
+      <div class="toast" id="toast">
+        <span id="toastMsg"></span>
+        <button id="undoBtn">Undo</button>
+      </div>
+
+      <div id="loading" class="loading-container">
+        <div class="spinner"></div>
+        <p>Loading notes...</p>
+      </div>
+    </section>
+
+
+    <section class="notes-grid">
+      <div class="pinned-section" id="pinnedSection">
+        <h4>Pinned Notes</h4>
+        <div id="pinnedNotesContainer">
+
+        </div>
+      </div>
+      <div id="notesContainer"></div>
+    </section>
+
+    <dialog id="noteDialog">
+      <div class="dialog-content">
+        <div class="dialog-header">
+          <h3 class="dialog-title" id="dialogTitle">Add Note</h3>
+          <button class="close-btn">x</button>
+        </div>
+        <form id="noteForm">
+          <div class="form-group" id="firstInput">
+            <label for="noteTitle" class="form-label">Title</label>
+            <input type="text" id="noteTitle" class="form-input" placeholder="Enter note title" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="noteContent" class="form-label">Content</label>
+            <textarea id="noteContent" class="form-textarea" placeholder="Enter note content" required></textarea>
+          </div>
+
+          <div class="categories">
+            <p>Category</p>
+            <div id="categoryContainer">
+              <button class="category" type="button" data-category="work">Work</button>
+              <button class="category" type="button" data-category="personal">Personal</button>
+              <button class="category" type="button" data-category="study">Study</button>
+              <button class="category" type="button" data-category="idea">Ideas</button>
+              <button class="category" type="button" data-category="other">Other</button>
+            </div>
+          </div>
+
+          <div class="dialog-actions">
+            <button type="button" class="cancel-btn">cancel</button>
+            <button type="submit" class="save-btn">Save Note</button>
+          </div>
+
+        </form>
+      </div>
+
+    </dialog>
+    <dialog id="confirmDialog">
+
+    </dialog>
+
+
+    <button class="add-note-btn" id="addBtn">
+
+
+      <?xml version="1.0" encoding="utf-8"?>
+
+
+      <svg width="60px" height="60px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g id="style=fill">
+          <g id="add">
+            <path id="Subtract" fill-rule="evenodd" clip-rule="evenodd"
+              d="M1.25 7.25C1.25 3.93629 3.93629 1.25 7.25 1.25L16.75 1.25C20.0637 1.25 22.75 3.93629 22.75 7.25L22.75 16.75C22.75 20.0637 20.0637 22.75 16.75 22.75L7.25 22.75C3.93629 22.75 1.25 20.0637 1.25 16.75L1.25 7.25ZM12.0248 6.32352C12.3578 6.32352 12.6277 6.59348 12.6277 6.92649L12.6277 11.3687L17.2132 11.3687C17.5641 11.3687 17.8486 11.6532 17.8486 12.0041C17.8486 12.3551 17.5641 12.6395 17.2132 12.6395L12.6277 12.6395L12.6277 16.8281C12.6277 17.1611 12.3577 17.4311 12.0247 17.4311C11.6917 17.4311 11.4217 17.1611 11.4217 16.8281L11.4218 12.6395L6.77862 12.6395C6.42768 12.6395 6.1432 12.355 6.1432 12.0041C6.1432 11.6531 6.42769 11.3687 6.77862 11.3687L11.4218 11.3687L11.4218 6.92648C11.4218 6.59347 11.6917 6.32352 12.0248 6.32352Z"
+              fill="#000000" />
+          </g>
+        </g>
+      </svg>
+    </button>
+
+
+
+  </main>
+  <footer id="footer">
+
+    <button id="homeFooter"><svg width="30px" height="30px" viewBox="-1.6 -1.6 19.20 19.20" fill="none"
+        xmlns="http://www.w3.org/2000/svg" stroke="" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M1 6V15H6V11C6 9.89543 6.89543 9 8 9C9.10457 9 10 9.89543 10 11V15H15V6L8 0L1 6Z" fill="#4545">
+          </path>
+        </g>
+      </svg></button>
+
+    <button id="archivedFooter">
+
+      <svg id="archiveSvg" width="30px" height="30px" viewBox="0 0 24 24" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <g id="SVGRepo_bgCarrier" stroke-width="0" />
+
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+
+        <g id="SVGRepo_iconCarrier">
+          <path opacity="0.5"
+            d="M11.9993 2C16.7133 2 19.0704 2 20.5348 3.46447C21.2923 4.22195 21.658 5.21824 21.8345 6.65598V10H2.16406V6.65598C2.3406 5.21824 2.70628 4.22195 3.46377 3.46447C4.92823 2 7.28525 2 11.9993 2Z"
+            fill="#4545" />
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M2 14C2 11.1997 2 9.79961 2.54497 8.73005C3.02433 7.78924 3.78924 7.02433 4.73005 6.54497C5.79961 6 7.19974 6 10 6H14C16.8003 6 18.2004 6 19.27 6.54497C20.2108 7.02433 20.9757 7.78924 21.455 8.73005C22 9.79961 22 11.1997 22 14C22 16.8003 22 18.2004 21.455 19.27C20.9757 20.2108 20.2108 20.9757 19.27 21.455C18.2004 22 16.8003 22 14 22H10C7.19974 22 5.79961 22 4.73005 21.455C3.78924 20.9757 3.02433 20.2108 2.54497 19.27C2 18.2004 2 16.8003 2 14ZM12.75 11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V15.1893L10.0303 13.9697C9.73744 13.6768 9.26256 13.6768 8.96967 13.9697C8.67678 14.2626 8.67678 14.7374 8.96967 15.0303L11.4697 17.5303C11.6103 17.671 11.8011 17.75 12 17.75C12.1989 17.75 12.3897 17.671 12.5303 17.5303L15.0303 15.0303C15.3232 14.7374 15.3232 14.2626 15.0303 13.9697C14.7374 13.6768 14.2626 13.6768 13.9697 13.9697L12.75 15.1893V11Z"
+            fill="#4545" />
+        </g>
+
+      </svg>
+      <p>Archived</p>
+    </button>
+
+
+  </footer>
+  <script src="storage.js"></script>
+  <script src="notesServices.js"></script>
+  <script src="render.js"></script>
+  <script src="ui.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
+
+
