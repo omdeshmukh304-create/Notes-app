@@ -1,5 +1,5 @@
 name: Dependency Scan
-#ADDED
+#ADDEDs
 on:
   workflow_call:
 
