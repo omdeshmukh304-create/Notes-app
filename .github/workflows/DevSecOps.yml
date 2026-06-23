@@ -1,7 +1,10 @@
 name: Final Pipeline
 
 on:
-  workflow_dispatch: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   code-quality:
