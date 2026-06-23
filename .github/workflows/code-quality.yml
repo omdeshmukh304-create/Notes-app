@@ -1,5 +1,5 @@
 name: Code Quality
-#add
+#added
 on:
   workflow_call:
 
