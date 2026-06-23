@@ -57,5 +57,5 @@ jobs:
 
             docker pull $DOCKERHUB_USERNAME/my-app:$DOCKER_TAG
 
-            docker-compose down
-            docker-compose up -d --force-recreate
+            docker compose down
+            docker compose up -d --force-recreate
