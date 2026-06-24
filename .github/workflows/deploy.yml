@@ -1,5 +1,5 @@
 name: Deploy to Server
-#addedsssssss
+#addedssssss
 
 on:
   workflow_call:
@@ -58,5 +58,7 @@ jobs:
 
             docker pull $DOCKERHUB_USERNAME/my-app:$DOCKER_TAG
 
-            docker compose down
+            docker compose down || true
             docker compose up -d --force-recreate
+          
+            docker ps
