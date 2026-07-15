@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# Set working directory
+# Set working directorye
 WORKDIR /app
 
 # Install system dependencies
